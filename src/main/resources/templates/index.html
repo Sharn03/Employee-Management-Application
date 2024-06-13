@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Management Application</title>
+   <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+          
+  
+
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Yeseva+One&display=swap" rel="stylesheet">
+
+    <style>
+          body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://pixabay.com/get/g60568031f9d554ea13e5462de5d13a62f29e3a6c74a78b19a714e80c42d0e04e700e90b2ff2a115dfc5f098a3f8a2cfcadf6c7205042327f0b85053b8058fe28_1920.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7; /* Adjust opacity here */
+            z-index: -1;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.5); /* White overlay with 50% opacity */
+        }
+
+        h1 {
+            font-family: "Yeseva One", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h2,th,a{
+            font-family: "Sarabun", sans-serif;
+            font-weight: 700;
+            font-style: italic;
+            font-size:20px;
+        }
+
+        td{
+            font-size: 20px;
+        }
+
+    </style>
+
+   
+</head>
+<body >
+ <h1 style="text-align: center;background-color: rgb(0, 0, 0);padding: 20px; color: rgb(240, 236, 236);box-shadow: 10px 10px rgb(241, 241, 241);">Employee Management Application</h1><br>
+	<div class="container my-2" align="center">
+	 <h2 class = "text-dark" style="text-shadow: 5px 2px rgba(211, 211, 211, 0.466); font-size: 50px;">Employee List</h2><br>
+	 <table class = "table table-striped table-responsive-md custom-table table-dark text-center ">
+        <thead class="table-dark ">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name </th>
+             <th>Age</th>
+             <th>Email-Id</th>
+            <th>Designation</th>
+            <th>Update</th>
+            <th>View</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+        <tr class="table-Light" th:each="employee:${allEmployeeDetails}">
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.age}"></td>
+            <td th:text="${employee.emailId}"></td>
+            <td th:text="${employee.designation}"></td>
+            <td><a th:href="@{/updateEmployee/{id}(id=${employee.id})}" class="btn btn-primary">Update</a> </td>
+            <td><a th:href="@{/viewEmployee/{id}(id=${employee.id})}" class="btn btn-success">View</a> </td>
+            <td><a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a> </td>
+        </tr>
+        </tbody>
+    </table>
+     <a th:href="@{/addNewEmployee}" class="btn btn-warning btn-lg mb-3" >Add Employee</a>
+     
+</div>
+</body>
+</html>
